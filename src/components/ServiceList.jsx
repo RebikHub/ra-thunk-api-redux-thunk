@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchGet, fetchDelete, fetchGetId } from '../store/middleware';
@@ -8,32 +8,32 @@ import Loader from './Loader';
 export default function ServiceList() {
   let navigate = useNavigate();
   const [removeId, setRemoveId] = useState([]);
-  const {items, loading, error} = useSelector(state => state.serviceList);
+  const { items, loading, error } = useSelector(state => state.serviceList);
   const removeLoading = useSelector(state => state.serviceRemove.loading);
   const removeError = useSelector(state => state.serviceRemove.error);
   const dispatch = useDispatch();
   
   useEffect(() => {
     dispatch(fetchGet());
-  }, [dispatch])
+  }, [dispatch]);
 
-  const handleRemove = id => {
+  function handleRemove(id) {
     setRemoveId((prev) => ([...prev, id]));
     dispatch(fetchDelete(id));
-  }
+  };
 
-  const handleEdit = id => {
+  function handleEdit(id) {
     dispatch(fetchGetId(id));
-    navigate("/edit")
-  }
+    navigate("/edit");
+  };
 
   if (loading) {
     return <Loader/>;
-  }
+  };
 
   if (error || removeError) {
     return <Error/>;
-  }
+  };
 
   return (
     <ul>
@@ -53,5 +53,5 @@ export default function ServiceList() {
       ))}
     </ul>
   );
-}
+};
 

@@ -124,6 +124,7 @@ form {
   left: 0;
   content: '';
 }
+
 .loader-btn:after {
   background: #ffffff;
   width: 75%;

@@ -32,36 +32,36 @@ export default function ServiceEdit() {
       if (post.error || error) {
         navigate('/services');
       }
-    }, 3 * 1000)
-  }, [post.error, error, navigate])
+    }, 3 * 1000);
+  }, [post.error, error, navigate]);
 
   useEffect(() => {
     if (post.save === 'ok') {
       navigate('/services');
       dispatch(fetchPostReset());
-    }
-  }, [dispatch, navigate, post.save])
+    };
+  }, [dispatch, navigate, post.save]);
 
   function inputName(ev) {
     setInput((prev) => ({...prev, name: ev.target.value}));
-  }
+  };
 
   function inputPrice(ev) {
     setInput((prev) => ({...prev, price: Number(ev.target.value)}));
-  }
+  };
 
   function inputContent(ev) {
     setInput((prev) => ({...prev, content: ev.target.value}));
-  }
+  };
 
-  async function enterService(ev) {
+  function enterService(ev) {
     ev.preventDefault();
-    await dispatch(fetchPost(input));
-  }
+    dispatch(fetchPost(input));
+  };
 
   if (post.error || error) {
     return <Error/>;
-  }
+  };
 
   return (
     <form onSubmit={enterService} className={loading || post.loading ? 'hidden-form' : ''}>
@@ -92,5 +92,5 @@ export default function ServiceEdit() {
             <button type='submit'>Сохранить</button>}
       </div>
     </form>
-  )
-}
+  );
+};
