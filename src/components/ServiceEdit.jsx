@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchPost, fetchPostReset } from '../store/action';
+import { fetchPostReset } from '../store/action';
+import { fetchPost } from '../store/middleware';
 import Error from './Error';
 
 export default function ServiceEdit() {
@@ -55,7 +56,7 @@ export default function ServiceEdit() {
 
   async function enterService(ev) {
     ev.preventDefault();
-    await fetchPost(dispatch, input);
+    await dispatch(fetchPost(input));
   }
 
   if (post.error || error) {

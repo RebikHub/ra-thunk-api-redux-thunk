@@ -1,4 +1,5 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import reducerGet from "./reducerGet";
 import reducerGetId from "./reducerGetId";
 import reducerDelete from "./reducerDelete";
@@ -12,7 +13,8 @@ const reducer = combineReducers({
 });
 
 const store = createStore(
-  reducer
+  reducer,
+  applyMiddleware(thunk)
 );
 
 export default store;

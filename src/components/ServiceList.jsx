@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchGet, fetchDelete, fetchGetId } from '../store/action';
+import { fetchGet, fetchDelete, fetchGetId } from '../store/middleware';
 import Error from './Error';
 import Loader from './Loader';
 
@@ -14,20 +14,16 @@ export default function ServiceList() {
   const dispatch = useDispatch();
   
   useEffect(() => {
-    fetchGet(dispatch);
+    dispatch(fetchGet());
   }, [dispatch])
-
-  // useEffect(() => {
-  //   setRemoveId(null);
-  // }, [items.length])
 
   const handleRemove = id => {
     setRemoveId((prev) => ([...prev, id]));
-    fetchDelete(dispatch, id);
+    dispatch(fetchDelete(id));
   }
 
   const handleEdit = id => {
-    fetchGetId(dispatch, id);
+    dispatch(fetchGetId(id));
     navigate("/edit")
   }
 
