@@ -1,9 +1,12 @@
-API
+[![Build status](https://ci.appveyor.com/api/projects/status/d42t9cq0kxv5t2rf/branch/master?svg=true)](https://ci.appveyor.com/project/RebikHub/ra-thunk-api-redux-thunk/branch/master)
+
+[API-with-thunk](https://rebikhub.github.io/ra-thunk-api-redux-thunk/)
+
 ===
 
 Вам необходимо переделать проект с лекции с использованием Router, а также нормальной обработкой загрузки и отображения ошибок.
 
-Всё состояние должно храниться в Redux Store. Для взаимодействия с HTTP используйте fetch и чистый Redux (без дополнительных библиотек), но помните, что вы работаете с побочными эффектами.
+Всё состояние должно храниться в Redux Store. Для взаимодействия с HTTP используйте fetch и Redux Thunk.
 
 ### Basic Level
 
