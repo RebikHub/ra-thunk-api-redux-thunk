@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { useNavigate } from 'react-router-dom';
-import { fetchGet, fetchDelete, fetchGetId } from '../store/middleware';
+import { fetchGet } from '../store/sliceGet';
+import { fetchDelete } from '../store/sliceDelete';
+import { fetchGetId } from '../store/sliceGetId';
 import Error from './Error';
 import Loader from './Loader';
 
 export default function ServiceList() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const [removeId, setRemoveId] = useState([]);
-  const { items, loading, error } = useSelector(state => state.serviceList);
-  const removeLoading = useSelector(state => state.serviceRemove.loading);
-  const removeError = useSelector(state => state.serviceRemove.error);
-  const dispatch = useDispatch();
+  const { items, loading, error } = useAppSelector(state => state.sliceGet);
+  const removeLoading = useAppSelector(state => state.sliceDelete.loading);
+  const removeError = useAppSelector(state => state.sliceDelete.error);
+  const dispatch = useAppDispatch();
   
   useEffect(() => {
     dispatch(fetchGet());

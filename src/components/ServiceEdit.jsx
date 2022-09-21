@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { fetchPostReset } from '../store/action';
-import { fetchPost } from '../store/middleware';
+import { fetchPostReset, fetchPost } from '../store/slicePost';
 import Error from './Error';
 
 export default function ServiceEdit() {
@@ -12,9 +11,9 @@ export default function ServiceEdit() {
     price: '',
     content: ''
   });
-  const {item, loading, error} = useSelector(state => state.serviceEdit);
+  const {item, loading, error} = useSelector(state => state.sliceGetId);
   const dispatch = useDispatch();
-  const post = useSelector(state => state.servicePost);
+  const post = useSelector(state => state.slicePost);
 
   useEffect(() => {
     if (item) {
@@ -28,6 +27,7 @@ export default function ServiceEdit() {
   }, [item])
 
   useEffect(() => {
+    console.log(post.error, error);
     setTimeout(() => {
       if (post.error || error) {
         navigate('/services');
