@@ -9,9 +9,9 @@ import { fetchGetId } from '../store/sliceGetId';
 import Error from './Error';
 import Loader from './Loader';
 import { Item } from 'src/interfaces/interfaces';
-import { ButtonList, ItemText } from 'src/styles/styles';
+import { ButtonList, ItemText, LoaderBtn } from 'src/styles/styles';
 
-type RemoveId = number[]
+type RemoveId = number[];
 
 export default function ServiceList(): ReactElement {
   const navigate = useNavigate();
@@ -50,12 +50,14 @@ export default function ServiceList(): ReactElement {
           <ItemText>{`${o.name} ${o.price}`}</ItemText>
           {!removeLoading || !removeId.includes(o.id) ?
             <div>
-              <ButtonList image='edit.png' onClick={() => handleEdit(o.id)}></ButtonList>
-              <ButtonList image='remove.png' onClick={() => handleRemove(o.id)}></ButtonList>
+              <ButtonList
+                image={require('../image/edit.png')}
+                onClick={() => handleEdit(o.id)}></ButtonList>
+              <ButtonList
+                image={require('../image/remove.png')}
+                onClick={() => handleRemove(o.id)}></ButtonList>
             </div> :
-            <div>
-              <div className="loader-btn" ></div>
-            </div>
+            <LoaderBtn/>
           }
         </li>
       ))}

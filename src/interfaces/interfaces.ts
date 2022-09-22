@@ -18,7 +18,7 @@ export interface IGetItems extends IStatus {
 export type Item = {
   id : number,
   name: string,
-  price: number | string,
+  price: number,
   content: string
 }
 

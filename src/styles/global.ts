@@ -7,6 +7,11 @@ export default createGlobalStyle`
     font-size: 1.1rem;
   }
 
+  #root {
+    max-width: 650px;
+    margin: 20px auto;
+  }
+
   button {
     border-radius: 4px;
     background-color: #ff3737bf;
@@ -21,9 +26,5 @@ export default createGlobalStyle`
     height: 40px;
     margin: 5px;
     border-radius: 3px;
-  }
-
-  form {
-    position: relative;
   }
 `

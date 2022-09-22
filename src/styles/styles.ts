@@ -79,5 +79,75 @@ export const ButtonList = styled.button<{image: string}>`
     margin: 6px;
     background-position: center;
     background-repeat: no-repeat;
-    background-image: url(${(props) => require(`../../image/${props.image}`).default};
+    background-image: url(${(props) => props.image});
+`
+
+export const LoaderBtn = styled.div`
+  font-size: 10px;
+  margin: 6px 26px;
+  text-indent: -9999em;
+  width: 27px;
+  height: 27px;
+  border-radius: 50%;
+  background: #f74040;
+  background: linear-gradient(to right, #f74040 10%, rgba(247,64,64, 0) 42%);
+  position: relative;
+  animation: ${animationLoad} 1.4s infinite linear;
+  transform: translateZ(0);
+
+  &::before {
+    width: 50%;
+    height: 50%;
+    background: #f74040;
+    border-radius: 100% 0 0 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+  }
+  
+  &::after {
+    background: #ffffff;
+    width: 75%;
+    height: 75%;
+    border-radius: 50%;
+    content: '';
+    margin: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+`
+
+export const EditInput = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+`
+
+export const EditButtons = styled.div`
+  display: flex;
+  margin: 10px;
+
+  & > button {
+    height: 39px;
+    width: fit-content;
+    padding: 0 13px;
+    margin-right: 10px;
+  }
+`
+
+export const Form = styled.form<{opacity: string}>`
+  position: relative;
+  opacity: ${(props) => props.opacity}
+`
+
+export const HiddenDiv = styled.div<{none: string}>`
+  display: ${(props) => props.none};
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
 `

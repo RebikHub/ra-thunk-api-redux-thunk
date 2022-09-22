@@ -1,18 +1,17 @@
 import * as React from 'react';
 import { ChangeEvent, ReactElement, useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
-// import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchPostReset, fetchPost } from '../store/slicePost';
 import Error from './Error';
 import { Item } from 'src/interfaces/interfaces';
 import { SyntheticEvent } from 'react';
+import { EditButtons, EditInput, Form, HiddenDiv, LoaderBtn } from 'src/styles/styles';
+import '../index.css'
 
 export default function ServiceEdit(): ReactElement {
   const location = useLocation();
   const navigate = useNavigate();
-
-  // console.log(navigate);
   
   console.log(location.pathname);
   console.log(location);
@@ -20,7 +19,7 @@ export default function ServiceEdit(): ReactElement {
   const [input, setInput] = useState<Item>({
     id: 0,
     name: '',
-    price: '',
+    price: 0,
     content: ''
   });
   const {item, loading, error} = useAppSelector(state => state.sliceGetId);
@@ -39,7 +38,6 @@ export default function ServiceEdit(): ReactElement {
   }, [item])
 
   useEffect(() => {
-    console.log(post.error, error);
     setTimeout(() => {
       if (post.error || error) {
         navigate('/services');
@@ -77,16 +75,16 @@ export default function ServiceEdit(): ReactElement {
   };
 
   return (
-    <form onSubmit={enterService} className={loading || post.loading ? 'hidden-form' : ''}>
-      <div className={loading || post.loading ? 'hidden' : 'none'}></div>
-      <div className='edit-input'>
+    <Form onSubmit={enterService} opacity={loading || post.loading ? '0.3' : '1'}>
+      <HiddenDiv none={loading || post.loading ? 'block' : 'none'}/>
+      <EditInput>
         <label htmlFor="name">Название</label>
         <input name='name' type="text"
           required
-          value={input.name}
+          value={input.name === '' ? '' : input.name}
           onChange={inputName} />
         <label htmlFor="price">Стоимость</label>
-        <input name='price' type="number"
+        <input name='price' type="text"
           required
           value={input.price}
           onChange={inputPrice} />
@@ -95,15 +93,13 @@ export default function ServiceEdit(): ReactElement {
           required
           value={input.content}
           onChange={inputContent} />
-      </div>
-      <div className='edit-buttons'>
+      </EditInput>
+      <EditButtons>
         <button type='button' onClick={() => navigate('/services')}>Отмена</button>
         {loading || post.loading ?
-          <div>
-            <div className="loader-btn" ></div>
-          </div> :
+          <LoaderBtn/> :
         <button type='submit'>Сохранить</button>}
-      </div>
-    </form>
+      </EditButtons>
+    </Form>
   );
 };
