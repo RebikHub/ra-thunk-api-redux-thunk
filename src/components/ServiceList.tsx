@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { ReactElement, useEffect, useState } from 'react';
 // import { useSelector, useDispatch } from 'react-redux';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +12,7 @@ import { Item } from 'src/interfaces/interfaces';
 
 type RemoveId = number[]
 
-export default function ServiceList(): React.ReactElement {
+export default function ServiceList(): ReactElement {
   const navigate = useNavigate();
   const [removeId, setRemoveId] = useState<RemoveId>([]);
   const { items, loading, error } = useAppSelector(state => state.sliceGet);

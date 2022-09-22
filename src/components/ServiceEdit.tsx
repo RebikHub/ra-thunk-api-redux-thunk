@@ -1,14 +1,22 @@
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import { ChangeEvent, ReactElement, useEffect, useState } from 'react';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 // import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { fetchPostReset, fetchPost } from '../store/slicePost';
 import Error from './Error';
 import { Item } from 'src/interfaces/interfaces';
+import { SyntheticEvent } from 'react';
 
-export default function ServiceEdit(): React.ReactElement {
-  let navigate = useNavigate();
+export default function ServiceEdit(): ReactElement {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // console.log(navigate);
+  
+  console.log(location.pathname);
+  console.log(location);
+
   const [input, setInput] = useState<Item>({
     id: 0,
     name: '',
@@ -46,20 +54,22 @@ export default function ServiceEdit(): React.ReactElement {
     };
   }, [dispatch, navigate, post.save]);
 
-  function inputName(ev: React.ChangeEvent<HTMLInputElement>) {
+  function inputName(ev: ChangeEvent<HTMLInputElement>) {
     setInput((prev) => ({...prev, name: ev.target.value}));
   };
 
-  function inputPrice(ev: React.ChangeEvent<HTMLInputElement>) {
+  function inputPrice(ev: ChangeEvent<HTMLInputElement>) {
     setInput((prev) => ({...prev, price: Number(ev.target.value)}));
   };
 
-  function inputContent(ev: React.ChangeEvent<HTMLInputElement>) {
+  function inputContent(ev: ChangeEvent<HTMLInputElement>) {
     setInput((prev) => ({...prev, content: ev.target.value}));
   };
 
-  function enterService() {
+  function enterService(ev: SyntheticEvent) {
+    ev.preventDefault();
     dispatch(fetchPost(input));
+    navigate(-1)
   };
 
   if (post.error || error) {
