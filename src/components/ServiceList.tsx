@@ -9,6 +9,7 @@ import { fetchGetId } from '../store/sliceGetId';
 import Error from './Error';
 import Loader from './Loader';
 import { Item } from 'src/interfaces/interfaces';
+import { ItemText } from 'src/styles/styles';
 
 type RemoveId = number[]
 
@@ -46,7 +47,7 @@ export default function ServiceList(): ReactElement {
     <ul>
       {items.map((o: Item) => (
         <li key={o.id}>
-          <p className="item-text">{`${o.name} ${o.price}`}</p>
+          <ItemText>{`${o.name} ${o.price}`}</ItemText>
           {!removeLoading || !removeId.includes(o.id) ?
             <div>
               <button className="btn-edit" onClick={() => handleEdit(o.id)}></button>

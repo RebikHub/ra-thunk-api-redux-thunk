@@ -1,5 +1,6 @@
 import * as React from 'react';
-import './index.css';
+// import './index.css';
+import GlobalStyles from './styles/global'
 import App from './App';
 import { store } from './store';
 import { Provider } from 'react-redux';
@@ -11,6 +12,7 @@ const root = createRoot(container);
 root.render(
   <HashRouter>
     <Provider store={store}>
+      <GlobalStyles />
       <App />
     </Provider>
   </HashRouter>

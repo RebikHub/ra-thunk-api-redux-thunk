@@ -1,8 +1,8 @@
 import * as React from 'react';
-import '../loader.css';
+import { LoaderDiv } from 'src/styles/styles';
 
 export default function Loader(): React.ReactElement {
   return (
-    <div className="loader">Loading...</div>
+    <LoaderDiv>Loading...</LoaderDiv>
   );
 };

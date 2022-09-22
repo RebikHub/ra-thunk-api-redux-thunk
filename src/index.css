@@ -74,7 +74,7 @@ ul > li {
   margin-right: 10px;
 }
 
-.error {
+/* .error {
   border-radius: 5px;
   background-color: rgb(253, 130, 130);
   width: 280px;
@@ -82,7 +82,7 @@ ul > li {
   margin: 20px auto;
   text-align: center;
   padding-top: 20px;
-}
+} */
 
 form {
   position: relative;

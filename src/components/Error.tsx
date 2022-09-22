@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { ReactElement } from 'react';
+import { ErrorDiv } from 'src/styles/styles';
 
-export default function Error(): React.ReactElement {
+
+export default function Error(): ReactElement {
   return (
-    <div className='error'>Произошла ошибка!</div>
+    <ErrorDiv>Произошла ошибка!</ErrorDiv>
   );
 };

@@ -4,15 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import ServiceEdit from './components/ServiceEdit';
 import ServiceList from './components/ServiceList';
 
-function App(): React.ReactElement {
-
-  // const onOnline = window.addEventListener('online', (ev) => {
-  //   console.log('online');
-  // });
-
-  // const onOffline = window.addEventListener('offline', (ev) => {
-  //   console.log('online');
-  // });
+export default function App(): React.ReactElement {
 
   useEffect(() => {
     console.log(navigator);
@@ -33,5 +25,3 @@ function App(): React.ReactElement {
     </>
   );
 };
-
-export default App;
