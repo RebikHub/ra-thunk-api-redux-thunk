@@ -73,3 +73,11 @@ export const ItemText = styled.p`
     align-self: center;
     padding-left: 5px;
 `
+export const ButtonList = styled.button<{image: string}>`
+    width: 30px;
+    height: 30px;
+    margin: 6px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(${(props) => require(`../../image/${props.image}`).default};
+`
