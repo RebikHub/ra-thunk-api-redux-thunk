@@ -1,19 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { useAppSelector, useAppDispatch } from '../store/hooks';
+// import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchPostReset, fetchPost } from '../store/slicePost';
 import Error from './Error';
+import { Item } from 'src/interfaces/interfaces';
 
-export default function ServiceEdit() {
+export default function ServiceEdit(): React.ReactElement {
   let navigate = useNavigate();
-  const [input, setInput] = useState({
+  const [input, setInput] = useState<Item>({
+    id: 0,
     name: '',
     price: '',
     content: ''
   });
-  const {item, loading, error} = useSelector(state => state.sliceGetId);
-  const dispatch = useDispatch();
-  const post = useSelector(state => state.slicePost);
+  const {item, loading, error} = useAppSelector(state => state.sliceGetId);
+  const dispatch = useAppDispatch();
+  const post = useAppSelector(state => state.slicePost);
 
   useEffect(() => {
     if (item) {
@@ -42,20 +46,19 @@ export default function ServiceEdit() {
     };
   }, [dispatch, navigate, post.save]);
 
-  function inputName(ev) {
+  function inputName(ev: React.ChangeEvent<HTMLInputElement>) {
     setInput((prev) => ({...prev, name: ev.target.value}));
   };
 
-  function inputPrice(ev) {
+  function inputPrice(ev: React.ChangeEvent<HTMLInputElement>) {
     setInput((prev) => ({...prev, price: Number(ev.target.value)}));
   };
 
-  function inputContent(ev) {
+  function inputContent(ev: React.ChangeEvent<HTMLInputElement>) {
     setInput((prev) => ({...prev, content: ev.target.value}));
   };
 
-  function enterService(ev) {
-    ev.preventDefault();
+  function enterService() {
     dispatch(fetchPost(input));
   };
 
@@ -86,10 +89,10 @@ export default function ServiceEdit() {
       <div className='edit-buttons'>
         <button type='button' onClick={() => navigate('/services')}>Отмена</button>
         {loading || post.loading ?
-            <div>
-              <div className="loader-btn" ></div>
-            </div> :
-            <button type='submit'>Сохранить</button>}
+          <div>
+            <div className="loader-btn" ></div>
+          </div> :
+        <button type='submit'>Сохранить</button>}
       </div>
     </form>
   );

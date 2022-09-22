@@ -1,9 +1,11 @@
-import React, { useEffect } from 'react';
+import * as React from 'react';
+import { useEffect } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import ServiceEdit from './components/ServiceEdit';
 import ServiceList from './components/ServiceList';
 
-function App() {
+function App(): React.ReactElement {
+
   // const onOnline = window.addEventListener('online', (ev) => {
   //   console.log('online');
   // });
@@ -19,7 +21,7 @@ function App() {
     } else {
       console.log('offline');
     }
-  }, [navigator.onLine])
+  }, [])
 
   return (
     <>
