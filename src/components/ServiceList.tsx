@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ReactElement, useEffect, useState } from 'react';
-// import { useSelector, useDispatch } from 'react-redux';
 import { useAppSelector, useAppDispatch } from '../store/hooks';
 import { useNavigate } from 'react-router-dom';
 import { fetchGet } from '../store/sliceGet';

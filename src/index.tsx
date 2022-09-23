@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import './index.css';
+// import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import GlobalStyles from './styles/global'
 import App from './App';
 import { store } from './store';
@@ -17,3 +17,16 @@ root.render(
     </Provider>
   </HashRouter>
 );
+
+(async () => {
+  try {
+    if (navigator.serviceWorker) {
+      await navigator.serviceWorker.register('./service-worker.js');
+      console.log('sw registered');
+    }
+  } catch (e) {
+    console.log(e);
+  }
+})();
+
+// "homepage": "https://rebikhub.github.io/ra-thunk-api-redux-thunk/",

@@ -7,7 +7,6 @@ import Error from './Error';
 import { Item } from 'src/interfaces/interfaces';
 import { SyntheticEvent } from 'react';
 import { EditButtons, EditInput, Form, HiddenDiv, LoaderBtn } from 'src/styles/styles';
-import '../index.css'
 
 export default function ServiceEdit(): ReactElement {
   const location = useLocation();
